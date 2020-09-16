@@ -8,6 +8,41 @@ In order to solve the challenge I used my collected knowledge, the paper "Contin
 by Lilicrap, Philip etc. and internet research.
 This attempt is my second architecture to solve the problem. I streamlined my first code and made changes.
 
+### DDPG (Deep Deterministic Policy Gradients): Working Principle
+
+Source: https://towardsdatascience.com/deep-deterministic-policy-gradients-explained-2d94655a9b7b
+
+The DDPG uses four neural networks: a Q network, a deterministic policy network, a target Q network,
+and a target policy network.
+
+The Q network and policy network work very much like simple Advantage Actor-Critic. The main difference in DDPG is, 
+that the Actor directly maps states to actions (the output of the network directly the output) 
+instead of outputting the probability distribution across a discrete action space
+The target networks are time-delayed copies of their original networks that slowly track the learned networks. 
+Thereby the networks improve stability in learning by using these target value networks .
+
+The DDPG uses four technqiues to optimize its learning:
+
+1. Experience replay:
+
+During each trajectory roll-out, all the experience tuples (state, action, reward, next_state) are saved
+and store them in a finite-sized cache — the “replay buffer.” 
+Then, random mini-batches of experience are sampled from the replay buffer.
+
+2. Actor & Critic network updates:
+
+The next-state Q values are calculated with the target value network and target policy network.
+
+3. Target network updates:
+
+A copy of the target network parameters are made to slowly track those of the learned networks via “soft updates,”
+
+4. Exploration:
+
+For continuous action spaces, exploration is done via adding noise to the action itself. 
+As in the DDPG paper, the Ornstein-Uhlenbeck Process is used to add noise to the action output 
+The Ornstein-Uhlenbeck Process generates noise that is correlated with the previous noise, as to prevent the noise 
+from canceling out or “freezing” the overall dynamics.
 
 ### Hyperparameters
 
@@ -32,7 +67,9 @@ The network has a two hidden layers 128 x 128 and uses batch normalization after
 
 The environment was solved in over 300 episodes. 
 Analyzing the given graph we see that first the learning starts quite linearly. But after approximately 120 episodes we get a rising fluctuation between the single episodes.
-The aimed goal of series of 30 was reached after XXX episodes. 
+The aimed goal of series of 30 was reached after 300 episodes. 
+
+![Graph: Score vs Episode](graph.png)
 
 #### Further Improvements
 
