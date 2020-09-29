@@ -1,10 +1,5 @@
 # Deep Reinforcement Continuous Control Report
 
-## Table of Contents
-1. [Learning Algorithm] (#algorithm)
-2. [Plot of Rewards] (#plot)
-3. [Future Ideas] (#futureideas)
-
 ## Learning Algorithm <a name="algorithm"></a>
 The algorithm used is based on the DDPG Actor Critic Model. It is wrapped arount a classic 
 Multi Agent structure to share the Replay Memory buffer between the two agents. Start point for the code was the algorithm used in p2.
