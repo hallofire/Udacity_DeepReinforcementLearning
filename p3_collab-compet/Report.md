@@ -48,7 +48,7 @@ The agent was trained with the following Hyperparameters:
 
 ## Plot of Rewards <a name="plot"></a>
 
-![Solved Agent][graph.png]
+![Graph](graph.png)
 
 The goal of this project was to reach an average reward of over 0.5 from at least 100 episodes of either agent.
 After training the agent with different configuration/hyperparameters, the best options are shown in the hyperparameter table.
